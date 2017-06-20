@@ -1,4 +1,4 @@
-package pl.salega.ksiegarnia;
+package pl.salega;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
