@@ -25,10 +25,10 @@ body,
 .page-header {
     margin-bottom: 30px;
 }
-
 .page-header .lead {
     margin-bottom: 10px;
 }
+
 
 /* Non-responsive overrides
  *
@@ -75,7 +75,6 @@ body,
 .navbar-toggle {
     display: none;
 }
-
 .navbar-collapse {
     border-top: 0;
 }
@@ -89,11 +88,9 @@ body,
     float: left;
     margin: 0;
 }
-
 .navbar-nav > li {
     float: left;
 }
-
 .navbar-nav > li > a {
     padding: 15px;
 }
@@ -115,11 +112,9 @@ body,
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
-
 .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #333;
 }
-
 .navbar .navbar-nav .open .dropdown-menu > li > a:hover,
 .navbar .navbar-nav .open .dropdown-menu > li > a:focus,
 .navbar .navbar-nav .open .dropdown-menu > .active > a,
@@ -128,7 +123,6 @@ body,
     color: #fff !important;
     background-color: #428bca !important;
 }
-
 .navbar .navbar-nav .open .dropdown-menu > .disabled > a,
 .navbar .navbar-nav .open .dropdown-menu > .disabled > a:hover,
 .navbar .navbar-nav .open .dropdown-menu > .disabled > a:focus {
@@ -230,7 +224,6 @@ body,
     display: inline-table;
     vertical-align: middle;
 }
-
 .form-inline .input-group .input-group-addon,
 .form-inline .input-group .input-group-btn,
 .form-inline .input-group .form-control {
@@ -253,7 +246,6 @@ body,
     margin-bottom: 0;
     vertical-align: middle;
 }
-
 .form-inline .radio label,
 .form-inline .checkbox label {
     padding-left: 0;
