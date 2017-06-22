@@ -26,38 +26,34 @@
 <nav class="navbar navbar-default navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Project name</a>
+
+            <a class="navbar-brand" href="#">KSIĘGARNIA SAŁĘGA</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+        <div id="navbar">
+            <ul class="nav navbar-nav navbar-left">
+
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle"
+                       data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">KSIĄŻKI <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li><a href="#">Regał książek</a></li>
+                        <li><a href="#">Godziny otwarcia i Dojazd</a></li>
+                        <li><a href="#">FAQ</a></li>
                     </ul>
                 </li>
+                <form class="navbar-form">
+                    <div class="form-group">
+                        <input type="text" name="keyword" class="from-control" placeholder="Tytuł ksiązki"/>
+                    </div>
+                    <button type="submit" class="btn btn-default">Szukaj</button>
+                </form>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-                <li><a href="../navbar-static-top/">Static top</a></li>
-                <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+                <li><a href="#">KOSZYK</a></li>
+                <li><a href="#">MOJE KONTO</a></li>
+                <li><a href="#">WYLOGUJ</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
@@ -170,7 +166,6 @@
     </div>
 
     <div class="row">
-
         <div id="featured-books" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -182,33 +177,42 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <div class="row">
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                    <img src="/image/shelf.png" class="img-responsive"/>
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                        </div>
                     </div>
                 </div>
                 <div class="item">
-                    <div class="row">
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                    <img src="/image/shelf.png" class="img-responsive"/>
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                        </div>
                     </div>
                 </div>
                 <div class="item active">
-                    <div class="row">
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
-                        <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                    <img src="/image/shelf.png" class="img-responsive"/>
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                            <div class="col-xs-2"><img src="/image/book1.jpg" class="img-responsive"/></div>
+                        </div>
                     </div>
                 </div>
 
