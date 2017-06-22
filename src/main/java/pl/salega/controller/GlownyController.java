@@ -15,5 +15,11 @@ public class GlownyController {
     return "index";
     }
 
+    @RequestMapping("/mojeKonto")
+    public String mojeKonto() {
+        return "mojeKonto";
+    }
+
+
 
 }
