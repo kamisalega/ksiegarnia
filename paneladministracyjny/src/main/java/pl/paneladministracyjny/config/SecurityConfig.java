@@ -1,4 +1,4 @@
-package pl.salega.config;
+package pl.paneladministracyjny.config;
 
 
 /**
@@ -15,8 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import pl.salega.service.impl.UserSecurityService;
-import pl.salega.utility.SecurityUtility;
+import pl.paneladministracyjny.service.impl.UserSecurityService;
+import pl.paneladministracyjny.utility.SecurityUtility;
 
 
 @Configuration
@@ -38,7 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/js/**",
             "/image/**",
             "/fonts/**",
-            "/",
             "/newUser",
             "/forgetPassword",
             "/login"

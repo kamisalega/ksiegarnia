@@ -30,7 +30,7 @@ public class KsiegarniaApplication implements CommandLineRunner {
 		user1.setLastName("w");
 		user1.setUsername("j");
 		user1.setPassword(SecurityUtility.passwordEncoder().encode("p"));
-		user1.setEmail("exclusivepolska@hotmail..com");
+		user1.setEmail("exclusivepolska@hotmail.com");
 		Set<UserRole> userRoles = new HashSet<>();
 		Role role1 = new Role();
 		role1.setRoleId(1);
