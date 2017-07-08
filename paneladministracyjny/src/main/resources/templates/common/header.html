@@ -13,7 +13,7 @@
     <!-- Custom styles for this template -->
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 
-    <link rel="icon" href="/image/icon.png"/>
+    <link rel="icon" th:href="@{/image/icon.png}"/>
 </head>
 
 <body>
@@ -121,8 +121,8 @@
                                             data-toggle="dropdown" role="button" aria-haspopup="true"
                                             aria-expanded="false">Książki<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Dodaj nową książke</a></li>
-                            <li><a href="#">Lista książek</a></li>
+                            <li><a th:href="@{/book/add}">Dodaj nową książke</a></li>
+                            <li><a th:href="@{/book/bookList}">Lista książek</a></li>
                         </ul>
                     </li>
                 </ul>
