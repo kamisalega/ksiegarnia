@@ -60,11 +60,11 @@
                 <label class="col-md-2 control-label" for="language">* Język</label>
                 <div class="col-md-8">
                     <select th:value="${book.language}" id="language" class="form-control" name="language">
-                        <option value="polish">Polski</option>
-                        <option value="english">Angielski</option>
-                        <option value="german">Niemiecki</option>
-                        <option value="french">Francuski</option>
-                        <option value="spanish">Hiszpański</option>
+                        <option value="Polski">Polski</option>
+                        <option value="Angielski">Angielski</option>
+                        <option value="Niemiecki">Niemiecki</option>
+                        <option value="Francuski">Francuski</option>
+                        <option value="Hiszpański">Hiszpański</option>
                     </select>
                 </div>
             </div>
@@ -77,11 +77,11 @@
                             class="form-control">
                         <option value="" selected="selected" disabled="disabled">Proszę wybrać opcje</option>
                         <option value="Sci-fi" th:selected="(${book.category}=='Sci-fi')">Sci-fi</option>
-                        <option value="Thriller" th:selected="(${book.category}=='Thriller')">Kryminał</option>
-                        <option value="Fantasy" th:selected="(${book.category}=='Fantasy')">Fantazja</option>
-                        <option value="Drama" th:selected="(${book.category}=='Drama')">Dramat</option>
-                        <option value="Comedy" th:selected="(${book.category}=='Comedy')">Komedia</option>
-                        <option value="Romance" th:selected="(${book.category}=='Romance')">Romans</option>
+                        <option value="Kryminał" th:selected="(${book.category}=='Kryminał')">Kryminał</option>
+                        <option value="Fantazja" th:selected="(${book.category}=='Fantazja')">Fantazja</option>
+                        <option value="Dramat" th:selected="(${book.category}=='Dramat')">Dramat</option>
+                        <option value="Komedia" th:selected="(${book.category}=='Komedia')">Komedia</option>
+                        <option value="Romans" th:selected="(${book.category}=='Romans')">Romans</option>
                     </select>
                 </div>
             </div>
