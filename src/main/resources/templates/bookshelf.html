@@ -9,7 +9,7 @@
         <div class="col-xs-8">
             <h2 class="section-headline">
                 <h2 class="section-headline">
-                    <span th:text="${user}? ${#strings.toUpperCase(user.username)}:'All Books'"></span>
+                    <span th:text="${user}? ${#strings.toUpperCase(user.username)}:'Wszystkie Książki'"></span>
                 </h2>
             </h2>
         </div>
@@ -46,9 +46,9 @@
                                          th:src="#{adminPath}+@{/image/book/}+${book.id}+'.png'"/>
                                 </div>
                                 <div class="col-xs-9">
-                                    <h4 th:text="book.title"></h4>
+                                    <h4 th:text="${book.title}"></h4>
                                     <span th:text="${book.publicationDate}"></span>
-                                    <span th:text="book.author"></span>
+                                    <span th:text="${book.author}"></span>
                                     <span th:text="${#strings.capitalize(book.format)}"></span>
                                     <span th:text="${book.numberOfPages}"><span> strony</span></span>
                                     <span style="font-size: x-large; color: #db3208;"> <span
