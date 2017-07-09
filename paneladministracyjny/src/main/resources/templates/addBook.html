@@ -71,9 +71,10 @@
 
             <!--Kategoria-->
             <div class="form-group">
-                <label class="col-md-2 control-label" for="category" name="category">* Kategoria</label>
+                <label class="col-md-2 control-label" for="category">* Kategoria</label>
                 <div class="col-md-8">
-                    <select th:value="${book.category}" id="category" required="required" class="form-control">
+                    <select th:value="${book.category}" id="category" required="required" name="category"
+                            class="form-control">
                         <option value="" selected="selected" disabled="disabled">Proszę wybrać opcje</option>
                         <option value="Sci-fi" th:selected="(${book.category}=='Sci-fi')">Sci-fi</option>
                         <option value="Thriller" th:selected="(${book.category}=='Thriller')">Kryminał</option>

@@ -18,20 +18,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.salega.domain.Book;
 import pl.salega.domain.User;
 import pl.salega.domain.security.PasswordResetToken;
 import pl.salega.domain.security.Role;
 import pl.salega.domain.security.UserRole;
+import pl.salega.service.BookService;
 import pl.salega.service.UserService;
 import pl.salega.service.impl.UserSecurityService;
 import pl.salega.utility.MailConstructor;
 import pl.salega.utility.SecurityUtility;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-import java.util.UUID;
+
+import java.util.*;
 
 
 @Controller
@@ -48,6 +48,9 @@ public class HomeController {
     @Autowired
     private UserSecurityService userSecurityService;
 
+    @Autowired
+    private BookService bookService;
+
     @RequestMapping("/")
     public String index() {
         return "index";
@@ -57,6 +60,15 @@ public class HomeController {
     public String login(Model model) {
         model.addAttribute("classActiveLogin", true);
         return "myAccount";
+    }
+
+    @RequestMapping("/bookshelf")
+    public String bookshelf(Model model) {
+        List<Book> bookList = bookService.findAll();
+        model.addAttribute("bookList", bookList);
+
+        return "bookshelf";
+
     }
 
     @RequestMapping("/forgetPassword")
