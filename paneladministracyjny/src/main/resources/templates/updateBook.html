@@ -6,10 +6,12 @@
 <div th:replace="common/header :: navbar"/>
 
 <div class="container">
-    <form class="form-horizontal" th:action="@{/book/add}" method="post" enctype="multipart/form-data">
+    <form class="form-horizontal" th:action="@{/book/updateBook}" method="post" enctype="multipart/form-data">
         <fieldset>
-            <legend class="center-block">Dodaj informacje o nowej książce <span style="font-size: small"> * pole jest wymagane. </span>
+            <legend class="center-block">Zaktualizujd informacje o nowej książce <span style="font-size: small"> * pole jest wymagane. </span>
             </legend>
+
+            <input hidden="hidden" name="id" th:value="${book.id}"/>
 
 
             <!--Tytuł-->
@@ -188,7 +190,7 @@
                 <label class="col-md-2 control-label" for="description">Opis</label>
                 <div class="col-md-8">
                 <textarea name="description" rows="5" type="text" class="form-control" id="description"
-                          th:value="${book.description}"
+                          th:value="${book.description}" th:text="${book.description}"
                           placeholder="Opis"/>
                     <span class="help-block">Opis książki</span>
                 </div>
@@ -207,8 +209,8 @@
             <div class="form-group">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <button type="submit" class="btn btn-success">Dodaj Książkę</button>
-                    <a class="btn btn-danger" th:href="@{/}">Anuluj</a>
+                    <button type="submit" class="btn btn-success">Zaktualizuj</button>
+                    <a class="btn btn-danger" th:href="@{/book/bookInfo(idf=${book.id})}">Anuluj</a>
                 </div>
             </div>
         </fieldset>

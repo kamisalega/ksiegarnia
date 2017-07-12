@@ -21,7 +21,7 @@ body,
     font-size: 16px;
 }
 
-/* Finesse the page common spacing */
+/* Finesse the page header spacing */
 .page-header {
     margin-bottom: 30px;
 }
@@ -58,7 +58,7 @@ body,
     margin-left: 0;
 }
 
-/* Always float the navbar common */
+/* Always float the navbar header */
 .navbar-header {
     float: left;
 }
