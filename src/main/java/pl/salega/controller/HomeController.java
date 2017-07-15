@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.salega.domain.Book;
 import pl.salega.domain.User;
+import pl.salega.domain.UserShipping;
 import pl.salega.domain.security.PasswordResetToken;
 import pl.salega.domain.security.Role;
 import pl.salega.domain.security.UserRole;
@@ -27,6 +28,7 @@ import pl.salega.service.BookService;
 import pl.salega.service.UserService;
 import pl.salega.service.impl.UserSecurityService;
 import pl.salega.utility.MailConstructor;
+import pl.salega.utility.PLConstants;
 import pl.salega.utility.SecurityUtility;
 
 import javax.servlet.http.HttpServletRequest;
@@ -120,6 +122,32 @@ public class HomeController {
 
         model.addAttribute("forgetPasswordEmailSent", true);
         return "myAccount";
+    }
+
+    @RequestMapping("/myProfile")
+    public String myProfile(Model model, Principal principal) {
+
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+//        model.addAttribute("orderList", getUserOrderList());
+
+        UserShipping userShipping = new UserShipping();
+        model.addAttribute("userShipping", userShipping);
+
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("listOfShippingAddresses", true);
+
+        List<String> voivodeshipsList = PLConstants.listOfPLVoivodeshipsCode;
+        Collections.sort(voivodeshipsList);
+
+        model.addAttribute("voivodeshipsList", voivodeshipsList);
+        model.addAttribute("classActiveEdit", true);
+
+
+        return "myProfile";
+
     }
 
     @RequestMapping(value = "/newUser", method = RequestMethod.POST)

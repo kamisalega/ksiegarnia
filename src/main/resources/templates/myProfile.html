@@ -40,7 +40,7 @@
 
             <!--karta paneli-->
             <div class="tab-content">
-                <!--Edycja infomacji użytkownika-->
+                <!--Infomacji o użytkowniku-->
                 <div class="tab-pane fade" id="tab-1" th:classappend="${classActiveEdit}? 'in active'">
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
@@ -112,52 +112,74 @@
                     </div>
                 </div>
 
-                <!--Logowanie-->
-                <div class="tab-pane fade" id="tab-2" th:classappend="${classActiveLogin}? 'in active'">
+                <!--Informacje o płatności użytkownika-->
+                <div class="tab-pane fade" id="tab-2" th:classappend="${classActiveEdit}? 'in active'">
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
                                  style="background-color: #ededed; margin-top: 20px;">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="nazwaUzytkownika">* Nazwa Użytkowika: </label> <input
-                                            required="required" type="text" class="form-control"
-                                            id="nazwaUzytkownika" name="nazwauzytkownika"/>
-                                        <p style="color: #828282">Tutaj wprowadź swoją nazwe użytkownika.</p>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label for="haslo">* Haslo: </label> <input
-                                            required="required" type="password" class="form-control"
-                                            id="haslo" name="haslo"/>
-                                        <p style="color: #828282">Tutaj wprowdź swoje hasło</p>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Zaloguj Się</button>
-                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--Zapomniałem Hasła-->
-                <div class="tab-pane fade" id="tab-3" th:classappend="${classActiveForgetPassword}? 'in active'">
+
+                <!--Informacje o płatności użytkownika-->
+                <div class="tab-pane fade" id="tab-3" th:classappend="${classActiveEdit}? 'in active'">
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
                                  style="background-color: #ededed; margin-top: 20px;">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="odzyskiwanieHasla">* Twój Email: </label> <input
-                                            required="required" type="text" class="form-control"
-                                            id="odzyskiwanieHasla" name="email"/>
-                                        <p style="color: #828282">Wprowadź tutaj zarejestrowany adres e-mail.
-                                        </p>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Zatwierdź</button>
-                                </form>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item active">
+                                        <a th:href="@{/listOfCreditCard}" th:style="${listOfCreditCards} ? 'color:red'">
+                                            Lista kart kredytowych</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">
+                                        <a th:href="@{/addNewCreditCard}" th:style="${addNewCreditCard} ? 'color:red'">
+                                            Dodaj kartę kredytową</a>
+                                    </li>
+                                </ol>
+                                <div th:if="${listOfCreditCards}">
+                                    <form th:action="@{/setDefaultPayment}" method="post">
+                                        <table class="table ">
+                                            <thead>
+                                            <tr>
+                                                <th>Domyślnie</th>
+                                                <th>Karta Krdytowa</th>
+                                                <th>Operacje</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="userPayment : ${userPaymentList}">
+                                                <td>
+                                                    <input type="radio" name="defaultUserPaymentId"
+                                                           th:value="${userPayment.id}"
+                                                           th:checked="${userPayment.defaultPayment}"/>
+                                                </td>
+                                                <td th:text="${userPayment.cardName}">
+                                                </td>
+                                                <td>
+                                                    <a th:href="@{updateCreditCard(id=${userPayment.id})}">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </a>
+                                                    <a th:href="@{removeCreditCard(id=${userPayment.id})}">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <button class="btn btn-primary" type="submit">Zapisz</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
