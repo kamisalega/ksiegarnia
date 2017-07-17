@@ -13,22 +13,22 @@ public class PLConstants {
 
     public final static Map<String, String> mapOfPLVoivodeship = new HashMap<String, String>() {
         {
-            put("D", "Dolnośląskie");
-            put("C", "Kujawsko-pomorskie");
-            put("L", "Lubelskie");
-            put("F", "Lubuskie");
-            put("E", "Łódzkie");
-            put("K", "Małopolskie");
-            put("M", "Mazowieckie");
-            put("O", "Opolskie");
-            put("R", "Podkarpackie");
-            put("B", "Podlaskie");
-            put("G", "Pomorskie");
-            put("S", "Śląskie");
-            put("T", "Świętokrzyskie");
-            put("N", "Warmińsko-mazurskie");
-            put("P", "Wielkopolskie");
-            put("Z", "Zachodniopomorskie");
+            put("Dolnośląskie", "Dolnośląskie");
+            put("Kujawsko-pomorskie", "Kujawsko-pomorskie");
+            put("Lubelskie", "Lubelskie");
+            put("Lubuskie", "Lubuskie");
+            put("Łódzkie", "Łódzkie");
+            put("Małopolskie", "Małopolskie");
+            put("Mazowieckie", "Mazowieckie");
+            put("Opolskie", "Opolskie");
+            put("Podkarpackie", "Podkarpackie");
+            put("Podlaskie", "Podlaskie");
+            put("Pomorskie", "Pomorskie");
+            put("Śląskie", "Śląskie");
+            put("Świętokrzyskie", "Świętokrzyskie");
+            put("Warmińsko-mazurskie", "Warmińsko-mazurskie");
+            put("Wielkopolskie", "Wielkopolskie");
+            put("Zachodniopomorskie", "Zachodniopomorskie");
 
         }
 

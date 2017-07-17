@@ -5,13 +5,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.salega.domain.User;
+import pl.salega.domain.UserBilling;
+import pl.salega.domain.UserPayment;
 import pl.salega.domain.security.PasswordResetToken;
 import pl.salega.domain.security.UserRole;
 import pl.salega.repository.PasswordResetTokenRepository;
 import pl.salega.repository.RoleRepository;
+import pl.salega.repository.UserPaymentRepository;
 import pl.salega.repository.UserRepository;
 import pl.salega.service.UserService;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -31,6 +35,9 @@ public class UserServiceImplementation implements UserService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private UserPaymentRepository userPaymentRepository;
 
     @Override
     public PasswordResetToken getPasswordResetToken(final String token) {
@@ -74,6 +81,32 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
+        userPayment.setUser(user);
+        userPayment.setUserBilling(userBilling);
+        userPayment.setDefaultPayment(true);
+        userBilling.setUserPayment(userPayment);
+        user.getUserPaymentList().add(userPayment);
+        save(user);
+    }
+
+    @Override
+    public void setUserDefaultPayment(Long userPaymentId, User user) {
+        List<UserPayment> userPaymentList = (List<UserPayment>) userPaymentRepository.findAll();
+
+
+        for (UserPayment userPayment : userPaymentList) {
+            if (userPayment.getId() == userPaymentId) {
+                userPayment.setDefaultPayment(true);
+                userPaymentRepository.save(userPayment);
+            } else {
+                userPayment.setDefaultPayment(false);
+                userPaymentRepository.save(userPayment);
+            }
+        }
     }
 
 
