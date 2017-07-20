@@ -3,6 +3,7 @@ package pl.salega.service;
 import pl.salega.domain.User;
 import pl.salega.domain.UserBilling;
 import pl.salega.domain.UserPayment;
+import pl.salega.domain.UserShipping;
 import pl.salega.domain.security.PasswordResetToken;
 import pl.salega.domain.security.UserRole;
 
@@ -27,5 +28,12 @@ public interface UserService {
 
     void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
 
+    void updateUserShipping(UserShipping userShipping, User user);
+
+
     void setUserDefaultPayment(Long userPaymentId, User user);
+
+    void setUserDefaultShipping(Long userShippingId, User user);
+
+
 }

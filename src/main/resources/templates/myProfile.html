@@ -243,8 +243,7 @@
                                                         </option>
                                                         <option th:each="voivodeships : ${voivodeshipsList}"
                                                                 th:text="${voivodeships}"
-                                                                th:selected="(${userBilling.userBillingVoivodeships})">
-                                                            Proszę wybrać opcję
+                                                                th:selected="(${userBilling.userBillingVoivodeships}==${voivodeships})">
                                                         </option>
                                                     </select>
                                                 </div>
@@ -371,6 +370,159 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!--Informacje o wysyłce-->
+                <div class="tab-pane fade" id="tab-4" th:classappend="${classActiveShipping} ? 'in active'">
+                    <div class="panel-group">
+                        <div class="panel panel-default" style="border: none;">
+                            <div class="panel-body"
+                                 style="background-color: #ededed; margin-top: 20px;">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item active">
+                                        <a th:href="@{/listOfShippingAddresses}"
+                                           th:style="${listOfShippingAddresses} ? 'color:red'">
+                                            Lista adresów wysyłki</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">
+                                        <a th:href="@{/addNewShippingAddress}"
+                                           th:style="${addNewShippingAddress} ? 'color:red'">
+                                            Dodaj adres wysyłki </a>
+                                    </li>
+                                </ol>
+
+                                <div th:if="${listOfShippingAddresses}">
+                                    <form th:action="@{/setDefaultShippingAddress}" method="post">
+                                        <table class="table ">
+                                            <thead>
+                                            <tr>
+                                                <th>Domyślnie</th>
+                                                <th>Adres wysyłki</th>
+                                                <th>Operacje</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="userShipping : ${userShippingList}">
+                                                <td>
+                                                    <input type="radio" name="defaultUserShippingAddressId"
+                                                           th:value="${userShipping.id}"
+                                                           th:checked="${userShipping.userShippingDefault}"/>
+                                                    <span>
+                                                        default
+                                                    </span>
+                                                </td>
+                                                <td th:text="${userShipping.userShippingStreet1}+', '+
+                                                 ${userShipping.userShippingCity}+ ', '+
+                                                 ${userShipping.userShippingVoivodeships}">
+                                                </td>
+                                                <td>
+                                                    <a th:href="@{/updateUserShipping(id=${userShipping.id})}">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </a>&nbsp;&nbsp;
+                                                    <a th:href="@{/removeUserShipping(id=${userShipping.id})}">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <button class="btn btn-primary" type="submit">Zapisz</button>
+                                    </form>
+                                </div>
+
+                                <div th:if="${addNewShippingAddress}">
+                                    <form th:action="@{/addNewShippingAddress}" method="post">
+                                        <div class="bg-info" th:if="${updateUserShippingInfo}">Informacje o użytkowniku
+                                            zostały zaktualizowane.
+                                        </div>
+                                        <input hidden="hidden" name="id" th:value="${userShipping.id}"/>
+
+
+                                        <hr/>
+
+                                        <!--Adres wysyłki-->
+                                        <div class="form-group">
+                                            <h4>Adres wysyłki</h4>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="shippingName">* Nazwa</label>
+                                            <input type="text" class="form-control" id="shippingName"
+                                                   placeholder="Nazwa Odbiorcy"
+                                                   th:name="userShippingName" required="required"
+                                                   th:value="${userShipping.userShippingName}"
+                                            />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="shippingAddress">* Adres </label>
+                                            <input type="text" class="form-control" id="shippingAddress"
+                                                   placeholder="Adres 1"
+                                                   th:name="userShippingStreet1" required="required"
+                                                   th:value="${userShipping.userShippingStreet1}"
+                                            />
+
+                                            <input type="text" class="form-control"
+                                                   placeholder="Adres 2"
+                                                   th:name="userShippingStreet2"
+                                                   th:value="${userShipping.userShippingStreet2}"
+                                            />
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <div class="form-group">
+                                                    <label for="shippingCity">* Miasto</label>
+                                                    <input type="text" class="form-control" id="shippingCity"
+                                                           placeholder="Miasto"
+                                                           th:name="userShippingCity" required="required"
+                                                           th:value="${userShipping.userShippingCity}"
+                                                    />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-xs-4">
+                                                <div class="form-group">
+                                                    <label for="shippingVoivodeships">* Województwo</label>
+                                                    <select id="shippingVoivodeships" class="form-control"
+                                                            th:name="userShippingVoivodeships"
+                                                            th:value="${userShipping.userShippingVoivodeships}"
+                                                            required="required">
+                                                        <option value="" disabled="disabled">Proszę wybrać opcję
+                                                        </option>
+                                                        <option th:each="voivodeships : ${voivodeshipsList}"
+                                                                th:text="${voivodeships}"
+                                                                th:selected="(${userShipping.userShippingVoivodeships}==${voivodeships})">
+                                                            Proszę wybrać opcję
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-4">
+                                                <div class="form-group">
+                                                    <label for="shippingPostcode">* Kod pocztowy</label>
+                                                    <input type="text" class="form-control" id="shippingPostcode"
+                                                           placeholder="Kod pocztowy"
+                                                           th:name="userShippingPostcode" required="required"
+                                                           th:value="${userShipping.userShippingPostcode}"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <hr/>
+
+                                        <button type="submit" class="btn btn-primary btn-lg">Zapisz</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
