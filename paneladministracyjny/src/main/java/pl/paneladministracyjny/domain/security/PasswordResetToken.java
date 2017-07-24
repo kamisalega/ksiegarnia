@@ -1,5 +1,6 @@
 package pl.paneladministracyjny.domain.security;
 
+
 import pl.paneladministracyjny.domain.User;
 
 import javax.persistence.*;

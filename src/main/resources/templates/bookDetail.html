@@ -59,13 +59,14 @@
                                                 th:text="${#numbers.formatDecimal((book.listPrice - book.ourPrice), 0, 'COMMA', 2, 'POINT')}"></span>
                                             PLN</p>
                                         <span>Ilosć: </span>
-                                        <select name="qty">
-                                            <option th:each="qty : ${qtyList}" th:value="${qty}" th:text="${qty}">
+                                        <select name="quantity">
+                                            <option th:each="quantity : ${quantityList}" th:value="${quantity}"
+                                                    th:text="${quantity}">
                                             </option>
                                         </select>
                                     </div>
                                     <div class="col-xs-6">
-                                        <h4 th:if="*{book.inStockNumber&gt;10}" style="color: green;">Dostępne</h4>
+                                        <h4 th:if="*{book.inStockNumber&gt;10}" style="color: green;">W magazynie</h4>
                                         <h4 th:if="*{book.inStockNumber&lt;10 and book.inStockNumber&gt;0}"
                                             style="color: green">Dostępne tylko <span th:text="${book.inStockNumber}"> sztuk</span>
                                         </h4>

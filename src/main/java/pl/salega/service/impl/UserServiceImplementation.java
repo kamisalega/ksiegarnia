@@ -4,15 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.salega.domain.User;
-import pl.salega.domain.UserBilling;
-import pl.salega.domain.UserPayment;
-import pl.salega.domain.UserShipping;
+import org.springframework.transaction.annotation.Transactional;
+import pl.salega.domain.*;
 import pl.salega.domain.security.PasswordResetToken;
 import pl.salega.domain.security.UserRole;
 import pl.salega.repository.*;
 import pl.salega.service.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -64,6 +63,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    @Transactional
     public User createUser(User user, Set<UserRole> userRoles) {
         User localUser = userRepository.findByUsername(user.getUsername());
         if (localUser != null) {
@@ -74,6 +74,14 @@ public class UserServiceImplementation implements UserService {
             }
 
             user.getUserRoles().addAll(userRoles);
+
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.setUser(user);
+            user.setShoppingCart(shoppingCart);
+
+            user.setUserShippingList(new ArrayList<UserShipping>());
+            user.setUserPaymentList(new ArrayList<UserPayment>());
+
             localUser = userRepository.save(user);
         }
         return localUser;

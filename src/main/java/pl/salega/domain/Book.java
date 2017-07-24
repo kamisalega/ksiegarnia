@@ -1,8 +1,10 @@
 package pl.salega.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by kamilsalega on 06.07.2017.
@@ -33,6 +35,10 @@ public class Book {
 
     @Transient
     private MultipartFile bookImage;
+
+    @OneToMany(mappedBy = "book")
+    @JsonIgnore
+    private List<BookToItemCart> bookToItemCartList;
 
     public Long getId() {
         return id;
@@ -168,5 +174,13 @@ public class Book {
 
     public void setBookImage(MultipartFile bookImage) {
         this.bookImage = bookImage;
+    }
+
+    public List<BookToItemCart> getBookToItemCartList() {
+        return bookToItemCartList;
+    }
+
+    public void setBookToItemCartList(List<BookToItemCart> bookToItemCartList) {
+        this.bookToItemCartList = bookToItemCartList;
     }
 }

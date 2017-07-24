@@ -1,8 +1,8 @@
 package pl.paneladministracyjny.domain.security;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;
 
 /**
  * Created by kamilsalega on 22.06.2017.
