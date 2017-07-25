@@ -44,7 +44,7 @@
             </div>
             <br/><br/>
             <div class="row">
-                <div class="col-xs-8"><h4>Produkty</h4></div>
+                <div class="col-xs-8"><h4 style="margin-left:70px;">Produkty</h4></div>
                 <div class="col-xs-2"><h4>Cena</h4></div>
                 <div class="col-xs-2"><h4>Ilość</h4></div>
             </div>
@@ -56,14 +56,23 @@
                     <hr/>
                     <div class="col-xs-2">
                         <a th:href="@{bookDetail(id=${cartItem.book.id})}">
-                            <img class="img-responsive shelf-book"
+                            <img style="width: 70px" class="img-responsive shelf-book center-block"
                                  th:src="#{adminPath}+@{/image/book/}+${cartItem.book.id}+'.png'"/>
                         </a>
-                        <p th:if="${cartItem.book.inStockNumber&gt;10}" style="color: green;">W magazynie</p>
-                        <p th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}"
-                           style="color: green;"> Tylko <span th:text="${cartItem.book.inStockNumber}"></span> W
-                            magazynie</p>
-                        <p th:if="${cartItem.book.inStockNumber==0}" style="color: darkred;"> Produkt niedostępny </p>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div style="margin-left: 50px">
+                            <a th:href="@{/bookDetail?id=}+${cartItem.book.id}"><h4
+                                    th:text="${cartItem.book.title}"></h4></a>
+                            <p th:if="${cartItem.book.inStockNumber&gt;10}" style="color: green;">W magazynie</p>
+                            <p th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}"
+                               style="color: green;"> Dostępne tylko <span
+                                    th:text="${cartItem.book.inStockNumber}"></span> sztuk</p>
+                            <p th:if="${cartItem.book.inStockNumber==0}" style="color: darkred;"> Produkt
+                                niedostępny </p>
+                            <a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">Usuń</a>
+                        </div>
                     </div>
 
                     <div class="col-xs-2">
@@ -83,6 +92,8 @@
                     </div>
                 </form>
             </div>
+
+
             <div class="row">
                 <hr/>
                 <h4 class="col-xs-12 text-right"><strong style="font-size: large;">Całkowity koszt (<span

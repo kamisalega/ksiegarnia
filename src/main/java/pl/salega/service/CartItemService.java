@@ -18,4 +18,8 @@ public interface CartItemService {
 
     CartItem addBookToCartItem(Book book, User user, int quantity);
 
+    CartItem findById(Long id);
+
+    void removeCartItem(CartItem cartItem);
+
 }

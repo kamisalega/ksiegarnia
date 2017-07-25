@@ -9,19 +9,21 @@
     <title>KSIĘGARNIA SAŁĘGA</title>
 
     <!-- Podstawow elemnty Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/css/non-responsive.css" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/non-responsive.css}" rel="stylesheet"/>
 
     <!--Tabela danych-->
     <link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/dataTables.bootstrap.min.css}" rel="stylesheet"/>
 
     <!--Czcionka-->
-    <link th:href="@{css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
 
 
     <!-- Niestandardowe style tego szablonu  -->
-    <link href="/css/style.css" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+
+
     <link rel="icon" href="/image/icon.png"/>
 
 </head>
@@ -75,6 +77,9 @@
     <!--JavaScript-->
     <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
+
+
+    <script th:src="@{/js/scripts.js}"></script>
 
     <!--Tabela danych-->
     <script th:src="@{/js/jquery.dataTables.min.js}"></script>
