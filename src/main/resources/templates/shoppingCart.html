@@ -30,10 +30,11 @@
                 <div class="col-xs-6 text-left">
                     <a class="btn btn-warning" th:href="@{/bookshelf}">Kontynuuj zakupy</a>
                 </div>
-                <div class="col-xs-6 text-right"></div>
+                <div class="col-xs-6 text-right">
                 <a class="btn btn-primary" th:href="@{/checkout(id=${shoppingCart.id})}">Sprawdź</a>
-            </div>
-            <br/>
+                </div>
+
+                <br/>
             <div th:if="${notEnoughStock}" class="alert alert-warning">
                 Ups, niektóre produkty nie mają wystarczającej ilości zapasów. Proszę zaktualizować
                 Ilość produktu.
@@ -41,6 +42,7 @@
             <div th:if="${emptyCart}" class="alert alert-warning"> Ups, twój kosz jest pusty. Sprawdź "regał z
                 książkami", jeśli któraś z książek Ci się spodoba dodaj ją
                 do koszyka.
+            </div>
             </div>
             <br/><br/>
             <div class="row">
@@ -92,10 +94,9 @@
                     </div>
                 </form>
             </div>
-
-
+            <hr/>
             <div class="row">
-                <hr/>
+
                 <h4 class="col-xs-12 text-right"><strong style="font-size: large;">Całkowity koszt (<span
                         th:text="${#lists.size(cartItemList)}"></span> przedmiotów): </strong><span
                         style="color: #db3208; font-size: large;"><span
