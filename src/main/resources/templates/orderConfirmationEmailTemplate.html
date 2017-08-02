@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      lang="en">
+<head>
+
+    <!-- Podstawow elementy Bootstrapa -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/non-responsive.css" rel="stylesheet"/>
+
+
+    <!-- Niestandardowe style tego szablonu -->
+    <link href="/css/style.css" rel="stylesheet"/>
+
+    <!-- Czcionka -->
+    <link href="/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<p> Drogi/a <span th:text="${user.firstName}"></span>,</p>
+<br/>
+<p>Dziękujemy za zakupy w naszej księgarni online. Mamy nadzieje że spędziłeś/aś dobry czas w naszym serwisie!</p>
+<p>Numer twojego zamówienia to: <strong># <span th:text="${order.id}"></span></strong>. Tu są szczegóły zamówienia: </p>
+<h2>Szczegółowy opis zamówienia #<span th:text="${order.id}"></span></h2>
+<hr/>
+<table>
+    <tr>
+        <th>Szczegóły płatności</th>
+        <th>Informacje o płatności</th>
+        <th>Adres wysyłki</th>
+    </tr>
+    <tr>
+        <td>
+            <span th:text="${order.billingAddress.billingAddressName}"></span> <br/>
+            <span th:text="${order.billingAddress.billingAddressStreet1}+' '+ ${order.billingAddress.billingAddressStreet2}"></span><br/>
+            <span th:text="${order.billingAddress.billingAddressCity}"></span> <br/>
+            <span th:text="${order.billingAddress.billingAddressVoivodeships}"></span> <br/>
+            <span th:text="${order.billingAddress.billingAddressPostcode}"></span> <br/>
+        </td>
+        <td>
+            <span th:text="${order.payment.holderName}"></span><br/>
+            <span th:text="${order.payment.type}"></span><br/>
+            <span th:text="${order.payment.cardNumber}"></span><br/>
+            <span th:text="${order.payment.expiryMonth}"></span><br/>
+            <span th:text="${order.payment.expiryYear}"></span><br/>
+        </td>
+
+        <td>
+            <span th:text="${order.shippingAddress.shippingAddressName}"></span> <br/>
+            <span th:text="${order.shippingAddress.shippingAddressStreet1}+' '+ ${order.shippingAddress.shippingAddressStreet2}"></span><br/>
+            <span th:text="${order.shippingAddress.shippingAddressCity}"></span> <br/>
+            <span th:text="${order.shippingAddress.shippingAddressVoivodeships}"></span> <br/>
+            <span th:text="${order.shippingAddress.shippingAddressPostcode}"></span> <br/>
+        </td>
+
+    </tr>
+</table>
+<h3><strong>Podsumowanie zamówienia</strong></h3>
+<table>
+    <thead>
+    <tr>
+        <td><strong>Nazwa</strong></td>
+        <td class="text-center">
+            <stron>Cena</stron>
+        </td>
+        <td class="text-center">
+            <stron>Ilość</stron>
+        </td>
+        <td class="text-right">
+            <stron>Łącznie</stron>
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cartItem : ${cartItemList}">
+        <td><span data-th-text="${cartItem.book.title}"></span></td>
+        <td class="text-center" data-th-text="${cartItem.book.ourPrice}"></td>
+        <td class="text-center" data-th-text="${cartItem.quantity}"></td>
+        <td class="text-right" data-th-text="${cartItem.subtotal}"></td>
+    </tr>
+    <tr>
+        <td class="highrow"></td>
+        <td class="highrow"></td>
+        <td class="highrow text-center"><strong>Częściowa</strong></td>
+        <td class="highrow text-right" data-th-text="${order.orderTotal}"></td>
+    </tr>
+    <tr>
+        <td class="emptyrow"></td>
+        <td class="emptyrow"></td>
+        <td class="emptyrow text-center"><strong>Podatek</strong></td>
+        <td class="emptyrow text-right" data-th-text="${#numbers.formatDecimal(order.orderTotal*0.06,0,2)}"></td>
+    </tr>
+
+    <tr>
+        <td class="emptyrow"><i class="fa fa-bar-code iconbig"></i></td>
+        <td class="emptyrow"></td>
+        <td class="emptyrow text-center"><strong>Razem</strong></td>
+        <td class="emptyrow text-right" th:with="total=${order.orderTotal+order.orderTotal*0.06}"
+            data-th-text="${#numbers.formatDecimal(total, 0, 2)}"></td>
+    </tr>
+
+    </tbody>
+</table>
+<br/>
+<p>Pozdrwiamy,</p>
+<p>Księgarnia Sałęga</p>
+<p>2017</p>
+</body>
+</html>

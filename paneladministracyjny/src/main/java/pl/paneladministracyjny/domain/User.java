@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import pl.paneladministracyjny.domain.security.Authority;
 import pl.paneladministracyjny.domain.security.UserRole;
 
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
@@ -35,6 +34,9 @@ public class User implements UserDetails {
     private String email;
     private String phone;
     private boolean enabled = true;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private ShoppingCart shoppingCart;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserShipping> userShippingList;
@@ -102,10 +104,6 @@ public class User implements UserDetails {
         this.phone = phone;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public Set<UserRole> getUserRoles() {
         return userRoles;
     }
@@ -128,6 +126,14 @@ public class User implements UserDetails {
 
     public void setUserPaymentList(List<UserPayment> userPaymentList) {
         this.userPaymentList = userPaymentList;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
     @Override
@@ -159,6 +165,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
 

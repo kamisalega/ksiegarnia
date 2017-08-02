@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.salega.domain.*;
 import pl.salega.service.*;
+import pl.salega.utility.MailConstructor;
 import pl.salega.utility.PLConstants;
 
 import java.security.Principal;
@@ -32,6 +33,9 @@ public class CheckoutController {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    @Autowired
+    private MailConstructor mailConstructor;
 
     @Autowired
     private UserService userService;
@@ -56,6 +60,9 @@ public class CheckoutController {
 
     @Autowired
     private UserPaymentService userPaymentService;
+
+    @Autowired
+    private OrderService orderService;
 
 
     @RequestMapping("/checkout")

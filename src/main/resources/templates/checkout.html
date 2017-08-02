@@ -5,7 +5,7 @@
 <body>
 <div th:replace="common/header :: navbar"/>
 <div class="container">
-    <div class="row" style="margin-bottom: -100px;">
+    <div class="row" style="margin-bottom: 0px!important;">
         <div class="col-xs-8">
             <h2 class="section-headline"><span>Konto Użytkowanika</span></h2>
         </div>
@@ -15,9 +15,9 @@
 
     </div>
 
-    <hr style="position: absolute; width: 100%; height: 6px; background-color: #333; z-index: -1; margin-top: -50px;"/>
-    <img class="img-responsive" src="/image/wood.png"
-         style="margin-top: -75px;"/>
+    <hr style="position: absolute; width: 80%; height: 6px; background-color: #333; z-index: -1; margin-top: -125px; "/>
+    <img class="img-responsive" th:src="@{/image/wood.png}"
+         style="margin-top: -75px; display: inline;"/>
 
 
     <div class="row" style="margin-top: 10px">
@@ -334,7 +334,7 @@
                                     <div class="col-xs-4">
                                         <div class="form-group billingAddress">
                                             <label for="billingCity">* Miasto</label>
-                                            <input type="text" class="form-control" id="billingCity"
+                                            <input type="text" class="form-control billingAddress" id="billingCity"
                                                    placeholder="Miasto"
                                                    th:name="billingAddressCity" required="required"
                                                    th:value="${billingAddress.billingAddressCity}"
@@ -346,7 +346,7 @@
                                     <div class="col-xs-4">
                                         <div class="form-group billingAddress">
                                             <label for="billingVoivodeships">* Województwo</label>
-                                            <select id="billingVoivodeships" class="form-control"
+                                            <select id="billingVoivodeships" class="form-control billingAddress"
                                                     th:name="billingAddressVoivodeships"
                                                     th:value="${billingAddress.billingAddressVoivodeships}"
                                                     required="required">
@@ -363,7 +363,7 @@
                                     <div class="col-xs-4">
                                         <div class="form-group billingAddress">
                                             <label for="billingPostcode">* Kod pocztowy</label>
-                                            <input type="text" class="form-control" id="billingPostcode"
+                                            <input type="text" class="form-control billingAddress" id="billingPostcode"
                                                    placeholder="Kod pocztowy"
                                                    th:name="billingAddressPostcode" required="required"
                                                    th:value="${billingAddress.billingAddressPostcode}"

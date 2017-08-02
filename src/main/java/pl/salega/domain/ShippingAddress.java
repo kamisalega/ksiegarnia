@@ -21,9 +21,8 @@ public class ShippingAddress {
     private String shippingAddressPostcode;
 
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToOne
+    private Order order;
 
     public Long getId() {
         return id;
@@ -31,6 +30,14 @@ public class ShippingAddress {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public String getShippingAddressName() {
@@ -89,11 +96,5 @@ public class ShippingAddress {
         this.shippingAddressPostcode = shippingAddressPostcode;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

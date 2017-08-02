@@ -5,7 +5,7 @@
 <body>
 <div th:replace="common/header :: navbar"/>
 <div class="container">
-    <div class="row" style="margin-bottom: -100px;">
+    <div class="row" style="margin-bottom: 0px!important;">
         <div class="col-xs-8">
             <h2 class="section-headline">
                 <h2 class="section-headline">
@@ -18,10 +18,9 @@
         </div>
     </div>
 
-    <hr style="position: absolute; width: 85%; height: 6px;
-    background-color: #333; z-index: -1; margin-top: -50px;"/>
-    <img class="img-responsive" src="/image/wood.png"
-         style="margin-top: -75px;"/>
+    <hr style="position: absolute; width: 80%; height: 6px; background-color: #333; z-index: -1; margin-top: -125px; "/>
+    <img class="img-responsive" th:src="@{/image/wood.png}"
+         style="margin-top: -75px; display: inline;"/>
 
 
     <div class="row" style="margin-top: 10px">
@@ -31,18 +30,18 @@
                     <a class="btn btn-warning" th:href="@{/bookshelf}">Kontynuuj zakupy</a>
                 </div>
                 <div class="col-xs-6 text-right">
-                <a class="btn btn-primary" th:href="@{/checkout(id=${shoppingCart.id})}">Sprawdź</a>
+                    <a class="btn btn-primary" th:href="@{/checkout(id=${shoppingCart.id})}">Sprawdź</a>
                 </div>
 
                 <br/>
-            <div th:if="${notEnoughStock}" class="alert alert-warning">
-                Ups, niektóre produkty nie mają wystarczającej ilości zapasów. Proszę zaktualizować
-                Ilość produktu.
-            </div>
-            <div th:if="${emptyCart}" class="alert alert-warning"> Ups, twój kosz jest pusty. Sprawdź "regał z
-                książkami", jeśli któraś z książek Ci się spodoba dodaj ją
-                do koszyka.
-            </div>
+                <div th:if="${notEnoughStock}" class="alert alert-warning">
+                    Ups, niektóre produkty nie mają wystarczającej ilości zapasów. Proszę zaktualizować
+                    Ilość produktu.
+                </div>
+                <div th:if="${emptyCart}" class="alert alert-warning"> Ups, twój kosz jest pusty. Sprawdź "regał z
+                    książkami", jeśli któraś z książek Ci się spodoba dodaj ją
+                    do koszyka.
+                </div>
             </div>
             <br/><br/>
             <div class="row">

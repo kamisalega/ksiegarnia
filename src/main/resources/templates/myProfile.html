@@ -5,7 +5,7 @@
 <body>
 <div th:replace="common/header :: navbar"/>
 <div class="container">
-    <div class="row" style="margin-bottom: -100px;">
+    <div class="row" style="margin-bottom: 0px!important;">
         <div class="col-xs-8">
             <h2 class="section-headline">
                 <h2 class="section-headline">
@@ -19,9 +19,9 @@
 
     </div>
 
-    <hr style="position: absolute; width: 100%; height: 6px; background-color: #333; z-index: -1; margin-top: -50px;"/>
-    <img class="img-responsive" src="/image/wood.png"
-         style="margin-top: -75px;"/>
+    <hr style="position: absolute; width: 80%; height: 6px; background-color: #333; z-index: -1; margin-top: -125px; "/>
+    <img class="img-responsive" th:src="@{/image/wood.png}"
+         style="margin-top: -75px; display: inline;"/>
 
 
     <div class="row" style="margin-top: 60px;">
@@ -46,6 +46,16 @@
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body"
                                  style="background-color: #ededed; margin-top: 20px;">
+
+                                <div class="alert alert-danger" th:if="${incorrectPassword}">
+                                    <stron>Nieprawidłowe hasło!</stron>
+                                    Prosze wprowadzić poprawne hasło.
+                                </div>
+                                <div class="alert alert-success" th:if="${updateSuccess}">
+                                    <stron>Aktualizacja powiodła się!</stron>
+
+                                </div>
+
                                 <form th:action="@{/updateUserInfo}" method="post">
                                     <input type="hidden" name="id" th:value="${user.id}"/>
 
@@ -71,7 +81,7 @@
                                     <div class="form-group">
                                         <label for="currentPassword">Obecne Hasło</label>
                                         <input type="password" class="form-control" id="currentPassword"
-                                               name="currentPassword"
+                                               name="password"
                                                th:value="${currentPassword}"/>
                                     </div>
                                     <p style="color: #828282;">Wprowadź twoje obecne hasło aby zmienić adres email lub
@@ -90,13 +100,14 @@
                                         powiadomienia.</p>
 
                                     <div class="form-group">
-                                        <label for="newPassword">Nowe Hasło</label>
+                                        <label for="newPassword">Nowe Hasło</label> &nbsp;<span id="checkPasswordMatch"
+                                                                                                style="color: red;"></span>
                                         <input type="password" class="form-control" id="newPassword"
                                                name="newPassword"
                                         />
                                     </div>
                                     <div class="form-group">
-                                        <label for="confirmPassword">Hasło</label>
+                                        <label for="confirmPassword">Potwierdź Hasło</label>
                                         <input type="password" class="form-control" id="confirmPassword"
 
                                         />
@@ -105,7 +116,8 @@
                                         w obu polach</p>
 
 
-                                    <button type="submit" class="btn btn-primary">Utwórz Nowe Konto</button>
+                                    <button id="updateUserInfoButton" type="submit" class="btn btn-primary">Zapisz
+                                    </button>
                                 </form>
                             </div>
                         </div>

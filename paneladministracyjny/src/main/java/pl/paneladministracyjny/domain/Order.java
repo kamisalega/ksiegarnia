@@ -21,13 +21,16 @@ public class Order {
     private Date shippingDate;
     private String shippingMethod;
     private String orderStatus;
-    private BigDecimal ordeTotal;
+    private BigDecimal orderTotal;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<CartItem> cartItemList;
 
     @OneToOne(cascade = CascadeType.ALL)
     private ShippingAddress shippingAddress;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private BillingAddress billingAddress;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
@@ -75,12 +78,12 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public BigDecimal getOrdeTotal() {
-        return ordeTotal;
+    public BigDecimal getOrderTotal() {
+        return orderTotal;
     }
 
-    public void setOrdeTotal(BigDecimal ordeTotal) {
-        this.ordeTotal = ordeTotal;
+    public void setOrderTotal(BigDecimal orderTotal) {
+        this.orderTotal = orderTotal;
     }
 
     public List<CartItem> getCartItemList() {
@@ -97,6 +100,14 @@ public class Order {
 
     public void setShippingAddress(ShippingAddress shippingAddress) {
         this.shippingAddress = shippingAddress;
+    }
+
+    public BillingAddress getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(BillingAddress billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
     public Payment getPayment() {
