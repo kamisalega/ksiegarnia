@@ -1,9 +1,6 @@
 package pl.salega.service;
 
-import pl.salega.domain.Book;
-import pl.salega.domain.CartItem;
-import pl.salega.domain.ShoppingCart;
-import pl.salega.domain.User;
+import pl.salega.domain.*;
 
 import java.util.List;
 
@@ -23,4 +20,6 @@ public interface CartItemService {
     void removeCartItem(CartItem cartItem);
 
     CartItem save(CartItem cartItem);
+
+    List<CartItem> findByOrder(Order order);
 }

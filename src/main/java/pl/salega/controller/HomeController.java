@@ -23,10 +23,7 @@ import pl.salega.domain.*;
 import pl.salega.domain.security.PasswordResetToken;
 import pl.salega.domain.security.Role;
 import pl.salega.domain.security.UserRole;
-import pl.salega.service.BookService;
-import pl.salega.service.UserPaymentService;
-import pl.salega.service.UserService;
-import pl.salega.service.UserShippingService;
+import pl.salega.service.*;
 import pl.salega.service.impl.UserSecurityService;
 import pl.salega.utility.MailConstructor;
 import pl.salega.utility.PLConstants;
@@ -60,6 +57,12 @@ public class HomeController {
 
     @Autowired
     private UserShippingService userShippingService;
+
+    @Autowired
+    private CartItemService cartItemService;
+
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping("/")
     public String index() {
@@ -139,7 +142,7 @@ public class HomeController {
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-//        model.addAttribute("orderList", getUserOrderList());
+        model.addAttribute("orderList", user.getOrderList());
 
         UserShipping userShipping = new UserShipping();
         model.addAttribute("userShipping", userShipping);
@@ -165,7 +168,8 @@ public class HomeController {
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-//        model.addAttribute("orderList", user.orderList());
+        model.addAttribute("orderList", user.getOrderList());
+
         model.addAttribute("listOfCreditCards", true);
         model.addAttribute("classActiveBilling", true);
         model.addAttribute("listOfShippingAddresses", true);
@@ -180,7 +184,7 @@ public class HomeController {
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-//        model.addAttribute("orderList", user.orderList());
+        model.addAttribute("orderList", user.getOrderList());
 
         model.addAttribute("listOfCreditCards", true);
         model.addAttribute("classActiveShipping", true);
@@ -209,7 +213,7 @@ public class HomeController {
         model.addAttribute("voivodeshipsList", voivodeshipsList);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-        //        model.addAttribute("orderList", user.orderList());
+        model.addAttribute("orderList", user.getOrderList());
 
         return "myProfile";
     }
@@ -234,7 +238,7 @@ public class HomeController {
         model.addAttribute("voivodeshipsList", voivodeshipsList);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-        //        model.addAttribute("orderList", user.orderList());
+        model.addAttribute("orderList", user.getOrderList());
 
         return "myProfile";
     }
@@ -251,6 +255,8 @@ public class HomeController {
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
+        model.addAttribute("orderList", user.getOrderList());
+
 
         model.addAttribute("listOfCreditCards", true);
         model.addAttribute("classActiveBilling", true);
@@ -271,6 +277,7 @@ public class HomeController {
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
+        model.addAttribute("orderList", user.getOrderList());
 
         model.addAttribute("listOfShippingAddresses", true);
         model.addAttribute("classActiveShipping", true);
@@ -304,6 +311,7 @@ public class HomeController {
 
             model.addAttribute("userPaymentList", user.getUserPaymentList());
             model.addAttribute("userShippingList", user.getUserShippingList());
+            model.addAttribute("orderList", user.getOrderList());
 
             model.addAttribute("addNewCreditCard", true);
             model.addAttribute("classActiveBilling", true);
@@ -333,6 +341,7 @@ public class HomeController {
 
             model.addAttribute("userPaymentList", user.getUserPaymentList());
             model.addAttribute("userShippingList", user.getUserShippingList());
+            model.addAttribute("orderList", user.getOrderList());
 
             model.addAttribute("addNewShippingAddress", true);
             model.addAttribute("classActiveShipping", true);
@@ -365,6 +374,7 @@ public class HomeController {
 
             model.addAttribute("userPaymentList", user.getUserPaymentList());
             model.addAttribute("userShippingList", user.getUserShippingList());
+            model.addAttribute("orderList", user.getOrderList());
 
             return "myProfile";
 
@@ -390,6 +400,7 @@ public class HomeController {
 
             model.addAttribute("userPaymentList", user.getUserPaymentList());
             model.addAttribute("userShippingList", user.getUserShippingList());
+            model.addAttribute("orderList", user.getOrderList());
 
             model.addAttribute("listOfShippingAddresses", true);
             model.addAttribute("classActiveShipping", true);
@@ -417,7 +428,7 @@ public class HomeController {
 
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-
+        model.addAttribute("orderList", user.getOrderList());
         return "myProfile";
     }
 
@@ -436,6 +447,7 @@ public class HomeController {
 
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
+        model.addAttribute("orderList", user.getOrderList());
 
         return "myProfile";
     }
@@ -483,6 +495,7 @@ public class HomeController {
         javaMailSender.send(email);
         model.addAttribute("user", user);
         model.addAttribute("emailSent", true);
+        model.addAttribute("orderList", user.getOrderList());
         return "myAccount";
 
     }
@@ -558,6 +571,8 @@ public class HomeController {
 
         userService.save(currentUser);
 
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("listOfShippingAddresses", true);
         model.addAttribute("updateSuccess", true);
         model.addAttribute("user", currentUser);
         model.addAttribute("classActiveEdit", true);
@@ -569,8 +584,54 @@ public class HomeController {
                 userDetails.getAuthorities());
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        model.addAttribute("orderList", user.getOrderList());
+
 
         return "myProfile";
+
+    }
+
+    @RequestMapping("/orderDetail")
+    public String orderDetail(
+            @RequestParam("id") Long orderId, Principal principal, Model model
+    ) {
+        User user = userService.findByUsername(principal.getName());
+        Order order = orderService.findOneOrder(orderId);
+
+        if (order.getUser().getId() != user.getId()) {
+            return "badRequestPage";
+        } else {
+            List<CartItem> cartItemList = cartItemService.findByOrder(order);
+
+            model.addAttribute("cartItemList", cartItemList);
+
+            model.addAttribute("user", user);
+            model.addAttribute("order", order);
+
+            model.addAttribute("userPaymentList", user.getUserPaymentList());
+            model.addAttribute("userShippingList", user.getUserShippingList());
+            model.addAttribute("oderList", user.getOrderList());
+
+            UserShipping userShipping = new UserShipping();
+            model.addAttribute("userShipping", userShipping);
+
+
+            List<String> voivodeshipsList = PLConstants.listOfPLVoivodeshipsCode;
+            Collections.sort(voivodeshipsList);
+            model.addAttribute("voivodeshipsList", voivodeshipsList);
+
+            model.addAttribute("userPaymentList", user.getUserPaymentList());
+            model.addAttribute("userShippingList", user.getUserShippingList());
+            model.addAttribute("orderList", user.getOrderList());
+
+            model.addAttribute("listOfShippingAddresses", true);
+            model.addAttribute("classActiveOrders", true);
+            model.addAttribute("listOfCreditCards", true);
+            model.addAttribute("displayOrderDetail", true);
+
+            return "myProfile";
+        }
+
 
     }
 }
