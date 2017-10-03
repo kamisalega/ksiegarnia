@@ -23,7 +23,7 @@
             <tr data-th-each="book : ${bookList}">
                 <td>
                     <input hidden="hidden" name="id" th:value="${book.id}"/>
-                    <input th:id="'selected' + ${book.id}" class="checkboxBox" type="checkbox"/>
+                    <input th:id="'selected' + ${book.id}" class="checkboxBook" type="checkbox"/>
                 </td>
                 <td><a th:href="@{/book/bookInfo(id=${book.id})}"><span th:text="${book.title}"></span></a></td>
                 <td th:text="${book.author}"></td>
@@ -32,26 +32,26 @@
                 <td th:text="${book.ourPrice}"></td>
                 <td th:text="${book.active}"></td>
                 <td><input hidden="hidden" name="id" th:value="${book.id}"/>
-                    <button th:id="oneBook- + ${book.id}" class="btn btn-danger btn-xs delete-book" type="submit"
-                            value="delete"></button>
-                    <span class="fa fa-times"></span>
+                    <button th:id="'oneBook-'+${book.id}" class="btn btn-danger btn-xs delete-book" type="submit"
+                            value="delete"><span class="fa fa-times"></span> Usuń</button>
+
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <button th:id="deleteSelected" class="btn btn-danger" type="submit"></button>
+    <button th:id="deleteSelected" class="btn btn-danger" type="submit"><span class="fa fa-times"></span> Usuń Wybrany</button>
 </div>
 
 <div th:replace="common/header :: body-bottom-scripts"/>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#bookListTable").DataTable({
-            "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            "lengthMenu": [[5,10,15,20,-1],[5,10,15,20,"All"]],
             "ordering": false,
-            "stateSave": true
+            stateSave: true
         });
-    })
+    });
 </script>
 </body>
 
