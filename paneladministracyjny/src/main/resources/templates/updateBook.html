@@ -179,8 +179,8 @@
             <div class="form-group">
                 <label class="col-md-2 control-label" for="status">Staus</label>
                 <div class="col-md-8">
-                    <label> <input value="true" type="radio" name="active" checked="checked"/> Znajduje </label>
-                    <label> <input value="false" type="radio" name="active"/> Nie znajduje </label>
+                    <label> <input value="true" type="radio" name="active" th:checked="${book.active}"/> Znajduje </label>
+                    <label> <input value="false" type="radio" name="active" th:checked="${!book.active}"/> Nie znajduje </label>
                     <span class="help-block">Książka "Znajduje" lub "Nie znajduje" się w magazynie</span>
                 </div>
             </div>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<div th:replace="common/header :: navbar"/>
+<div class="container">
+    <div class="row" style="margin-bottom: 0px!important;">
+        <div class="col-xs-8">
+            <h2 class="section-headline"><span>Konto Użytkowanika</span></h2>
+        </div>
+        <div class="col-xs-4">
+            <img src="/image/logo.png" class="img-responsive"/>
+        </div>
+
+    </div>
+
+    <hr style="position: absolute; width: 80%; height: 6px; background-color: #333; z-index: -1; margin-top: -125px; "/>
+    <img class="img-responsive" th:src="@{/image/wood.png}"
+         style="margin-top: -75px; display: inline;"/>
+
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-xs-9 col-xs-offset-3">
+            <img class="img-responsive" src="/image/404.png"/>
+            <h5>Błąd. Ścieżka jest nieprawidłowa. Kliknij <a th:href="@{/}">tutaj</a> aby powrócić do głównej strony.
+            </h5>
+        </div>
+
+    </div>
+</div>
+
+
+<!--koniec kontenera-->
+<div th:replace="common/header :: footer"/>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

@@ -76,12 +76,32 @@ public class HomeController {
     }
 
     @RequestMapping("/bookshelf")
-    public String bookshelf(Model model) {
+    public String bookshelf(Model model, Principal principal) {
+
+        if (principal != null) {
+            String username = principal.getName();
+            User user = userService.findByUsername(username);
+            model.addAttribute(user);
+        }
+
+
         List<Book> bookList = bookService.findAll();
         model.addAttribute("bookList", bookList);
+        model.addAttribute("activeAll", true);
 
         return "bookshelf";
 
+    }
+
+    @RequestMapping("/hours")
+    public String hours() {
+        return "hours";
+    }
+
+
+    @RequestMapping("/faq")
+    public String faq() {
+        return "faq";
     }
 
     @RequestMapping("/bookDetail")
